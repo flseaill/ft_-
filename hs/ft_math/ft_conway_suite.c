@@ -6,7 +6,7 @@
 /*   By: flseaill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 22:35:07 by flseaill          #+#    #+#             */
-/*   Updated: 2017/04/15 22:47:51 by flseaill         ###   ########.fr       */
+/*   Updated: 2017/04/16 18:44:28 by flseaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ unsigned int	ft_conway_suite(int iter, int start)
 			{
 				if (recurrence > 0)
 					next[i++] = ft_itoa(recurrence);
+				else
+					next[i++] = '1';
 				next[i++] = *nb;
 				recurrence = 0;
 			}
