@@ -6,7 +6,7 @@
 /*   By: flseaill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 18:42:29 by flseaill          #+#    #+#             */
-/*   Updated: 2017/06/26 21:13:39 by flseaill         ###   ########.fr       */
+/*   Updated: 2017/06/27 22:11:20 by flseaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,35 @@ int		my_key_funct(int keycode, void *param)
 	return (0);
 }
 
-// Dessine un carre de la taille et la couleur donne
-int		ft_draw_square(void *mlx, void *win, int x, int y, int color)
+int		draw_line(void *mlx, void *win, int x, int y, int color)
+{
+	int dx;
+	int dy;
+	int e;
+	e = x[1] - x[0];
+	dx = e * 2;
+	dy = (y[1] - y[0]) * 2;
+	while (x[0] <= x[1])
+	{
+		mlx_pixel_put(mlx, win, x[0], y[0], color);
+		x[0] = x[0] + 1;
+		if ((e - dy) <= 0)
+		{
+			y[0] = y[0] + 1 ;
+			e = e + dx ;
+		}
+	}
+	return (1);
+}
+
+// Dessine un carre a la position et avec la couleur donne
+int		draw_square(void *mlx, void *win, int x, int y, int color)
 {
 	y = 50;
-	while (y < 150)
+	while (y < 250)
 	{
 		x = 50;
-		while (x < 150)
+		while (x < 400)
 		{
 			mlx_pixel_put(mlx, win, x, y, color);
 			x++;
@@ -45,8 +66,8 @@ int		main(void)
 	char	*name;
 	void	*mlx;
 	void	*win;
-	int		x;
-	int		y;
+	int		*x;
+	int		*y;
 	int		color;
 	int		width;
 	int		height;
@@ -57,8 +78,8 @@ int		main(void)
 	width = 2560;
 	// Hauteur
 	height = 1440;
-	x = 1440;
-	y = 720;
+	//x = 1440;
+	//y = 720;
 	color = ORANGE;
 	// Init de mlx
 	mlx = mlx_init();
@@ -68,12 +89,11 @@ int		main(void)
 	if (!mlx || !win)
 		return (0);
 	else
-		// x et y non pris en compte, pourquoi?
-		ft_draw_square(mlx, win, x, y, color);
-	// Se dessine par dessus le premier carre, pourquoi?
-	// ft_draw_square(mlx, win, 2000, 800, 0x00ABACFC);
+		//draw_line(mlx, win, x, y, color);
+		draw_square(mlx, win, 0, 100, BLUE);
+	//draw_square(mlx, win, 50, 60, PURPLE);
 	// Recuperation de la touche enfonce
-	mlx_key_hook(win, my_key_funct, 0);
+	//mlx_key_hook(win, my_key_funct, 0);
 	// Pour que le programme ne se ferme pas
 	mlx_loop(mlx);
 }
