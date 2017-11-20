@@ -117,7 +117,7 @@
 # define BROWN					0x61380B
 
 // INCLUDES
-#include "mlx.h"
+#include "minilibx_macos/mlx.h"
 #include "libft/libft.h"
 
 // Display keycode

@@ -1,3 +1,4 @@
+#include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,7 +15,7 @@ struct Liste
 	Element *premier;
 };
 
-Liste *initialisation()
+Liste *lstnew()
 {
 	Liste *liste = malloc(sizeof(*liste));
 	Element *element = malloc(sizeof(*element));
@@ -70,11 +71,16 @@ void	*print_lst(Liste *liste)
 
 int		main(void)
 {
-	Liste *maListe = initialisation();
+	Liste *maListe = lstnew();
 
 	add_lst(maListe, 4);
 	add_lst(maListe, 8);
+	add_lst(maListe, 9);
+	add_lst(maListe, 11);
+	add_lst(maListe, 12);
 	add_lst(maListe, 15);
+	add_lst(maListe, 17);
+	add_lst(maListe, 21);
 	del_lst(maListe);
 
 	print_lst(maListe);

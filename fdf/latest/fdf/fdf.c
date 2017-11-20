@@ -6,7 +6,7 @@
 /*   By: flseaill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 18:42:29 by flseaill          #+#    #+#             */
-/*   Updated: 2017/06/27 22:11:20 by flseaill         ###   ########.fr       */
+/*   Updated: 2017/07/18 17:56:21 by flseaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		my_key_funct(int keycode, void *param)
 	return (0);
 }
 
-int		draw_line(void *mlx, void *win, int x, int y, int color)
+int		draw_line(void *mlx, void *win, int *x, int *y, int color)
 {
 	int dx;
 	int dy;
@@ -66,8 +66,8 @@ int		main(void)
 	char	*name;
 	void	*mlx;
 	void	*win;
-	int		*x;
-	int		*y;
+//	int		*x;
+//	int		*y;
 	int		color;
 	int		width;
 	int		height;
@@ -75,9 +75,9 @@ int		main(void)
 	// Nom de la fenetre
 	name = "fdf";
 	// Largeur
-	width = 2560;
+	width = WIDTH_720p;
 	// Hauteur
-	height = 1440;
+	height = HEIGHT_720p;
 	//x = 1440;
 	//y = 720;
 	color = ORANGE;
