@@ -6,11 +6,11 @@
 /*   By: flseaill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 16:38:15 by flseaill          #+#    #+#             */
-/*   Updated: 2017/11/20 19:21:40 by flseaill         ###   ########.fr       */
+/*   Updated: 2017/11/28 20:22:00 by flseaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft/libft.h"
+#include "ft_ls/libft/libft.h"
 
 /* stdlib pour exit(), et stdio pour puts() */
 #include <stdlib.h>

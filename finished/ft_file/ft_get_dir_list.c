@@ -1,40 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_dir.c                                      :+:      :+:    :+:   */
+/*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flseaill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 16:38:15 by flseaill          #+#    #+#             */
-/*   Updated: 2017/11/28 20:22:00 by flseaill         ###   ########.fr       */
+/*   Created: 2017/11/24 18:30:08 by flseaill          #+#    #+#             */
+/*   Updated: 2017/11/28 20:52:34 by flseaill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_ls/libft/libft.h"
-
-/* stdlib pour exit(), et stdio pour puts() */
+#include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
+#include <fcntl.h>
+#include "../../ft_ls/ft_ls.h"
 
-/* Pour l'utilisation des dossiers */
-#include <dirent.h>
-
-struct	dirent* readdir(DIR* repertoire);
-
-int		ft_listdir(char *path)
+int					ft_list_dir(char *path, int opt_a)
 {
-	DIR*	rep;
-	struct dirent* readfile;
+	DIR*			rep;
+	struct dirent*	readfile;
+	int		fd;
 
 	rep = opendir(path); /* Ouverture d'un dossier */
+	fd = open(path, O_RDONLY);
 	if (rep == NULL) /* Si le dossier n'a pas pu être ouvert */
+	{
+		ft_putstr("ft_ls: ");
+		ft_putstr(path);
+		ft_putendl(": No such file or directory");
 		exit(1); /* (mauvais chemin par exemple) */
+	}
 	while ((readfile = readdir(rep)) != NULL)
 	{
-		ft_putendl(readfile->d_name);
-		readfile++;
+		if (readfile->d_name[0] != '.' && opt_a == 0)
+		{
+			ft_putendl(readfile->d_name);
+			readfile++;
+		}
+		else
+			readfile++;
 	}
-	if (closedir(rep) == -1) /* S'il y a eu un souci avec la fermeture */
+	if (close(fd) == -1 || closedir(rep) == -1) /* S'il y a eu un souci avec la fermeture */
 		exit(-1);
 	return (0);
 }
@@ -42,11 +47,13 @@ int		ft_listdir(char *path)
 
 int		main(int argc, char **argv)
 {
-	if (argc == 2)
-		ft_listdir(argv[1]);
-	else if (argc > 2)
-		ft_putstr("Too many arguments.\n");
-	else if (argc < 2)
-		ft_putstr("Folder name missing.\n");
+	int		opt_a;
+
+	opt_a = 0;
+	if (argc >= 2)
+		ft_list_dir(argv[1], opt_a);
+	else if (argc == 1)
+		//ft_putstr("Folder name missing.\n");
+		ft_list_dir("./", opt_a);
 	return (0);
 }
