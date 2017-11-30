@@ -2,6 +2,16 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
+
+
+
+
+
+
+
+
+
+
 int		ft_strlen(char *str)
 {
 	int i;
@@ -102,7 +112,7 @@ void	ft_displayfilelen(char *filename)
 	ft_putstr(" lignes de long.\n");
 	close(fd);
 	fd = open(filename, O_RDONLY);
-	size = ft_filelen(fd) * 4;
+	size = ft_filelen(fd);// * 4;
 	ft_putstr("le fichier fait ");
 	ft_putnbr(size);
 	ft_putstr(" octets.\n");
